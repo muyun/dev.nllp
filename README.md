@@ -9,8 +9,9 @@
   * a small business  
 
 ##### skills 
-  *   stretch/photography  
-  * driving, 
+  * stretch/photography  
+  
+  * driving  
 
   *  sales  
 
