@@ -1,6 +1,39 @@
 
 #### note  
 
+##### 2021-05-12  
+  * TODO  
+    - read one paper  
+
+    - write t he PPT  
+
+    - don't spend on the others when you are working  
+    
+
+  * reference  
+    - [legartis](https://legartis.ai/)
+
+##### 2021-05-11  
+  * TODO  
+    - read one paper  
+
+    - write the PPT  
+
+    - some programming  
+
+    - write on the proj "from idea to business"  
+
+  * Summary  
+    - Don't do anything  
+    - didn't sleep good  
+
+##### 2021-05-10  
+  * TODO  
+    - finish one paper according to the skills  
+
+    - begin to write the PPT  
+
+
 ##### 2021-05-06  
   * TODO  
     - read the article 'how to read papers'  
