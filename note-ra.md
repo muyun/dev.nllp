@@ -17,7 +17,9 @@
     - worksataion @ [oracle-cloud](https://cloud.oracle.com/compute/instances?region=ap-seoul-1)  
         + passphrase for ssh key: zhaowenlong  
         > ssh -i ~/.ssh/keys/id_rsa opc@152.70.255.176  
-        > ssh -i ~/.ssh/keys/id_rsa_2 ubuntu@152.70.237.255  
+        > ssh -i ~/.ssh/keys/id_rsa_2 ubuntu@152.70.237.255 
+
+    - push into the master branch not main branch   
 
 ##### 2021-05-24
   * TODO
