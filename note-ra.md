@@ -6,8 +6,10 @@
     - read the paper <Ledgar>  
 
     - finish the ch5  
+        + DONE  
 
     - programming  
+        + Some python ebook from cuhk  
 
   * INFO  
     - workstation @cuhk   
