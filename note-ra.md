@@ -1,9 +1,19 @@
+#### note  
 
-#### note
+##### 2021-05-26  
+* TODO  
+    - read the paper <Ledgar>  
+        + CHECK the data format  
+        + think the related experiement  
+
+    - read the paper on legal-bert  
+
+    - some programming  
 
 ##### 2021-05-25  
-  * TODO  
+* TODO  
     - read the paper <Ledgar>  
+        + set the worksation env  
 
     - finish the ch5  
         + DONE  
@@ -11,7 +21,7 @@
     - programming  
         + Some python ebook from cuhk  
 
-  * INFO  
+* INFO  
     - workstation @cuhk   
        > ssh wlzhao@137.189.56.6 
        > ssh wlzhao@137.189.59.36  
@@ -24,31 +34,31 @@
     - push into the master branch not main branch   
 
 ##### 2021-05-24
-  * TODO
+* TODO
     - read the paper <Ledgar> 
 
     - read ch5 in <coders at work>  
-      + interesting, let me know how the programmer does his work  
+        + interesting, let me know how the programmer does his work  
 
     - do some programming 
-      + should code more, and find the funny on coding   
+        + should code more, and find the funny on coding   
 
-  * SELF
+* SELF
     - feel a bit tired  
 
-  * SUMMARY  
+* SUMMARY  
     - get up too late, around 10:30;  get up at 8:00  
 
 ##### 2021-05-21
-  * check LEDGAR dataset, and try to use legal-bert model as a baseline
+* check LEDGAR dataset, and try to use legal-bert model as a baseline
 
-  * check more dataset on 'sentence classification'
+* check more dataset on 'sentence classification'
 
-  * idea
+* idea
     - more features from cases + items
 
 ##### 2021-05-20
-  * TODO
+* TODO
     - update the issues on the research topics
 
     - Think about what you wanna in this job
@@ -57,17 +67,17 @@
 
     - and how does this job help u with your purpose
 
-  * TOIMPROVE
+* TOIMPROVE
     - more effort on the current work
     - don't do other things in your working time
 
 
 ##### 2021-05-17
-  *  Staff card
+*  Staff card
     - profile -> The CU Link Card Centre, located in Room 804, 8/F,  Wu Ho Man Yuen (WMY) Building R804
 
 ##### 2021-05-13
-  * TODO
+* TODO
     - finish the PPT  on method part
 
     - check more papers
@@ -75,7 +85,7 @@
     - think about your directions
 
 ##### 2021-05-12
-  * TODO
+* TODO
     - read one paper
 
     - write the PPT
@@ -83,14 +93,14 @@
     - don't spend on the others when you are working
 
 
-  * reference
+* reference
     - [legartis](https://legartis.ai/)
 
-  * Summary
+* Summary
     - DONE
 
 ##### 2021-05-11
-  * TODO
+* TODO
     - read one paper
 
     - write the PPT
@@ -99,19 +109,19 @@
 
     - write on the proj "from idea to business"
 
-  * Summary
+* Summary
     - Don't do anything
     - didn't sleep good
 
 ##### 2021-05-10
-  * TODO
+* TODO
     - finish one paper according to the skills
 
     - begin to write the PPT
 
 
 ##### 2021-05-06
-  * TODO
+* TODO
     - read the article 'how to read papers'
         + DONE
 
@@ -121,41 +131,41 @@
         + JS
 
 ##### 2021-05-05
-  * TODO
+* TODO
     - [Git knowledge](https://jwiegley.github.io/git-from-the-bottom-up/)
         + DONE
 
 
 ##### 2021-05-04
-  * NLP in legal domain
+* NLP in legal domain
     - IP field ?
 
-  * switch my blog into heroku
+* switch my blog into heroku
     - rss papers ?
 
-  * how to read papers
+* how to read papers
 
 ##### 2021-05-03  - target
-  * join a group for a research paper
+* join a group for a research paper
     - paper reading
 
-  * improve my programming
+* improve my programming
     - scheme
     - js/typescript
     - python
 
-  * improve my skills
+* improve my skills
     - writing
     - publich speaking
 
 
-  * try to be responsible
+* try to be responsible
     - work at least 8h each day on the project
     - a bit more active
 
-  * try to improve your energy and efficiency
+* try to improve your energy and efficiency
     - more priorities and focus
 
 
 #### info
-  *  wlzhao/Wenlong001
+*  wlzhao/Wenlong001
