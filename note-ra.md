@@ -1,53 +1,86 @@
-#### note  
+#### note
 
-##### 2021-05-26  
-* TODO  
-    - read the paper <Ledgar>  
-        + CHECK the data format  
-        + think the related experiement  
+##### 2021-05-26
+* TODO
+    - read the paper <Ledgar>
+        + CHECK the data format 
+        + think about the related experiement 
+        + [code](https://github.com/dtuggener/LEDGAR_provision_classification)
 
-    - read the paper on legal-bert  
+    - read the paper on legal-bert
 
-    - some programming  
+    - some programming
 
-##### 2021-05-25  
-* TODO  
-    - read the paper <Ledgar>  
-        + set the worksation env  
+* insight
+    - clearly thinking: if you wanna think better, **giving more time to think**, and hone your understanding of the problem
 
-    - finish the ch5  
-        + DONE  
+* research:
+    - **mindset**: **learning from failure to continue exploring the unknown*** is a brodadly useful mindset
+        + science proceeds because researchers do all they can to **disprove their hypotheses** rathe than prove them right
 
-    - programming  
-        + Some python ebook from cuhk  
+    - look for **important problems**, meaning ones with **answers that matter to humankind**
 
-* INFO  
-    - workstation @cuhk   
-       > ssh wlzhao@137.189.56.6 
-       > ssh wlzhao@137.189.59.36  
+    - **getting started**
+        + it's **unnecessary** for scientists to spend an enormous amount of time learning techniques and supporting disciplines before beginning research
 
-    - worksataion @ [oracle-cloud](https://cloud.oracle.com/compute/instances?region=ap-seoul-1)  
-        + passphrase for ssh key: zhaowenlong  
-        > ssh -i ~/.ssh/keys/id_rsa opc@152.70.255.176  
-        > ssh -i ~/.ssh/keys/id_rsa_2 ubuntu@152.70.237.255 
+        + the best way to learn what we need to know is **by getting started**, then **picking up new knowledge as it proves itself necessary**.
+        the great incentive to learning a new skill or supporting discipline is **needing to use it**
+        when there's an urgent need, we learn faster and avoid unnecessary learning
 
-    - push into the master branch not main branch   
+        +  build confidence **by doing something concrete and seeing a visible manifestation of our labors**.
+        the best scientists **begin with the understanding** that they can never know anything and, besides, **learning needs to be a lifelong process**        "**psychologically most important to get results**, even if they are not original"
+
+    - effective collaboration
+        + advocate for being open about ideas and doing away with secrecy
+        +  **tell everyone everything you know**
+
+    - never to fool yourself
+
+    - the best creative environment
+        + creativity rises from **tranquility**
+        + creativity is upported by **a safe environement**,
+        one in which you can **share and question openly**, and be heard
+        with **compassion and a desire to understand**
+
+
+##### 2021-05-25
+* TODO
+    - read the paper <Ledgar>
+        + set the worksation env
+
+    - finish the ch5
+        + DONE
+
+    - programming
+        + Some python ebook from cuhk
+
+* INFO
+    - workstation @cuhk
+       > ssh wlzhao@137.189.56.6
+       > ssh wlzhao@137.189.59.36
+
+    - worksataion @ [oracle-cloud](https://cloud.oracle.com/compute/instances?region=ap-seoul-1)
+        + passphrase for ssh key: zhaowenlong
+        > ssh -i ~/.ssh/keys/id_rsa opc@152.70.255.176
+        > ssh -i ~/.ssh/keys/id_rsa_2 ubuntu@152.70.237.255
+
+    - push into the master branch not main branch
 
 ##### 2021-05-24
 * TODO
-    - read the paper <Ledgar> 
+    - read the paper <Ledgar>
 
-    - read ch5 in <coders at work>  
-        + interesting, let me know how the programmer does his work  
+    - read ch5 in <coders at work>
+        + interesting, let me know how the programmer does his work
 
-    - do some programming 
-        + should code more, and find the funny on coding   
+    - do some programming
+        + should code more, and find the funny on coding
 
 * SELF
-    - feel a bit tired  
+    - feel a bit tired
 
-* SUMMARY  
-    - get up too late, around 10:30;  get up at 8:00  
+* SUMMARY
+    - get up too late, around 10:30;  get up at 8:00
 
 ##### 2021-05-21
 * check LEDGAR dataset, and try to use legal-bert model as a baseline
