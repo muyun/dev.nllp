@@ -4,11 +4,14 @@
 * TODO  
     - setup and run the experiment on windows  
 
+    - read the articles  
+
+    - some programming  
+
 * INFO  
     - setup virtualenv on windows  
     > virtualenv nllpenv  
     > source ~/nllpenv/Scripts/activate  
-    > 
     > deactivate  
 
     
