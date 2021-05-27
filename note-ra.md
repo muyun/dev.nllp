@@ -4,6 +4,14 @@
 * TODO  
     - setup and run the experiment on windows  
 
+* INFO  
+    - setup virtualenv on windows  
+    > virtualenv nllpenv  
+    > source ~/nllpenv/Scripts/activate  
+    > 
+    > deactivate  
+
+    
 ##### 2021-05-26
 * TODO
     - read the paper <Ledgar>
