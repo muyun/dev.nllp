@@ -121,7 +121,7 @@ if __name__ == '__main__':
     doc_ids: List[str] = []
 
     print('Loading data from', corpus_file)
-    for line in open(corpus_file):
+    for line in open(corpus_file, encoding="cp437", errors='ignore'):
         labeled_provision = json.loads(line)
         x.append(labeled_provision['provision'])
         y.append(labeled_provision['label'])
