@@ -1,12 +1,27 @@
 #### note  
 
+##### 2021-05-28  
+
+* TODO  
+    - read the paper <legal bert>  
+
+    - read Brendan Eich part from <coders at work> 
+
+* SUMMARY  
+
+    - exercise more, like getting up earlier, and running in the moring  
+
 ##### 2021-05-27  
+
 * TODO  
     - setup and run the experiment on windows  
+        + DONE with INFO  
 
     - read the articles  
+        + actually not, a bit tired  
 
     - some programming  
+        + Actually not, a bit tired  
 
 * INFO  
     - setup virtualenv on windows  
@@ -14,8 +29,15 @@
     > source ~/nllpenv/Scripts/activate  
     > deactivate  
 
+* SELF  
+    - learn and practice listening skills  
+        + **use feelings**, not words to express  
+        + your tone of voice    
+        + notice your language in the meetup  
     
+
 ##### 2021-05-26
+
 * TODO
     - read the paper <Ledgar>
         + CHECK the data format 
@@ -57,8 +79,8 @@
         one in which you can **share and question openly**, and be heard
         with **compassion and a desire to understand**
 
-
 ##### 2021-05-25
+
 * TODO
     - read the paper <Ledgar>
         + set the worksation env
@@ -82,6 +104,7 @@
     - push into the master branch not main branch
 
 ##### 2021-05-24
+
 * TODO
     - read the paper <Ledgar>
 
@@ -98,6 +121,7 @@
     - get up too late, around 10:30;  get up at 8:00
 
 ##### 2021-05-21
+
 * check LEDGAR dataset, and try to use legal-bert model as a baseline
 
 * check more dataset on 'sentence classification'
@@ -106,6 +130,7 @@
     - more features from cases + items
 
 ##### 2021-05-20
+
 * TODO
     - update the issues on the research topics
 
@@ -119,12 +144,13 @@
     - more effort on the current work
     - don't do other things in your working time
 
-
 ##### 2021-05-17
+
 *  Staff card
     - profile -> The CU Link Card Centre, located in Room 804, 8/F,  Wu Ho Man Yuen (WMY) Building R804
 
 ##### 2021-05-13
+
 * TODO
     - finish the PPT  on method part
 
@@ -133,13 +159,13 @@
     - think about your directions
 
 ##### 2021-05-12
+
 * TODO
     - read one paper
 
     - write the PPT
 
     - don't spend on the others when you are working
-
 
 * reference
     - [legartis](https://legartis.ai/)
@@ -148,6 +174,7 @@
     - DONE
 
 ##### 2021-05-11
+
 * TODO
     - read one paper
 
@@ -162,13 +189,14 @@
     - didn't sleep good
 
 ##### 2021-05-10
+
 * TODO
     - finish one paper according to the skills
 
     - begin to write the PPT
 
-
 ##### 2021-05-06
+
 * TODO
     - read the article 'how to read papers'
         + DONE
@@ -179,12 +207,13 @@
         + JS
 
 ##### 2021-05-05
+
 * TODO
     - [Git knowledge](https://jwiegley.github.io/git-from-the-bottom-up/)
         + DONE
 
-
 ##### 2021-05-04
+
 * NLP in legal domain
     - IP field ?
 
@@ -194,6 +223,7 @@
 * how to read papers
 
 ##### 2021-05-03  - target
+
 * join a group for a research paper
     - paper reading
 
@@ -206,7 +236,6 @@
     - writing
     - publich speaking
 
-
 * try to be responsible
     - work at least 8h each day on the project
     - a bit more active
@@ -214,6 +243,6 @@
 * try to improve your energy and efficiency
     - more priorities and focus
 
-
 #### info
+
 *  wlzhao/Wenlong001
