@@ -1,5 +1,27 @@
 #### note  
 
+##### 2021-06-01  
+
+* TODO  
+    - read the paper <legal bert>  
+
+    - check how to use LEGAL-BERT to train  
+        + adjust the code  
+    
+
+##### 2021-05-31  
+
+* TODO  
+    - read Brendan Eich part from <coders at work>  
+
+    - some programming  
+    
+
+    - read the paper <legal bert>  
+
+* SUMMARY  
+    - feel so tired 
+
 ##### 2021-05-28  
 
 * TODO  

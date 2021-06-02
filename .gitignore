@@ -1,5 +1,6 @@
-*.jsonl 
 .DS_Store
 *.pyc
 *.pkl
-experiment/*
+experiment/legal-bert-base-uncased/*
+experiment/legal-bert-small-uncased/*
+experiment/data/*.jsonl
