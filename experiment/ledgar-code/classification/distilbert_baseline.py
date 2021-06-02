@@ -300,8 +300,10 @@ def main():
     parser = build_arg_parser()
     args = parser.parse_args()
 
+    """
     if args.mode not in {'test', 'train'}:
         raise ValueError(f"unknown mode {args.mode}, use 'test' or 'train'")
+    """
 
     if args.subsample_quantile is not None:
         if not (1.0 > args.subsample_quantile > 0.0):
