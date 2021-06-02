@@ -1,5 +1,62 @@
 #### note  
 
+
+##### 2021-06-02  
+
+* log:
+$ python classification/legalbert_baseline.py --data ../data/LEDGAR_2016-2019_clean_freq100.jsonl --mode train
+2021-06-02 17:40:48.799092: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cuda
+rt64_110.dll'; dlerror: cudart64_110.dll not found
+2021-06-02 17:40:48.799283: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have
+a GPU set up on your machine.
+Some weights of the model checkpoint at C:\Users\wlzhao\proj\goal2021\experiment\legal-bert-small were not used when initializin
+g BertModel: ['cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.dense.weight', 'cls.predictions.decoder.b
+ias', 'cls.seq_relationship.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.bias', 'cls.predictions.transform.
+LayerNorm.bias', 'cls.seq_relationship.bias', 'cls.predictions.decoder.weight']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another arch
+itecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical
+(initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+construct training data tensor
+start training
+Iteration:   0%|                                                                                     | 0/56297 [00:00<?, ?it/s]
+Epoch:   0%|                                                                                             | 0/1 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "C:\Users\wlzhao\proj\goal2021\experiment\ledgar-code\classification\legalbert_baseline.py", line 537, in <module>
+    main()
+  File "C:\Users\wlzhao\proj\goal2021\experiment\ledgar-code\classification\legalbert_baseline.py", line 371, in main
+    train(
+  File "C:\Users\wlzhao\proj\goal2021\experiment\ledgar-code\classification\legalbert_baseline.py", line 159, in train
+    outputs = model(**inputs)
+  File "C:\Users\wlzhao\nllpenv\lib\site-packages\torch\nn\modules\module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+TypeError: forward() got an unexpected keyword argument 'labels'
+(nllpenv)
+
+
+
+##### 2021-06-01  
+
+* TODO  
+    - read the paper <legal bert>  
+
+    - check how to use LEGAL-BERT to train  
+        + adjust the code  
+    
+
+##### 2021-05-31  
+
+* TODO  
+    - read Brendan Eich part from <coders at work>  
+
+    - some programming  
+    
+
+    - read the paper <legal bert>  
+
+* SUMMARY  
+    - feel so tired 
+
 ##### 2021-05-28  
 
 * TODO  

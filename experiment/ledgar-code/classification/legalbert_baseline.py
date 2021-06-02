@@ -1,4 +1,3 @@
-
 import random
 import argparse
 
@@ -20,6 +19,10 @@ from pytorch_transformers.modeling_distilbert import (
     DistilBertModel,
 )
 
+# added by raymond
+from transformers import AutoTokenizer, AutoModel
+from pytorch_transformers import BertConfig, BertTokenizer
+
 from sklearn.metrics import f1_score, classification_report
 
 from tqdm import tqdm, trange
@@ -30,7 +33,6 @@ from utils import evaluate_multilabels
 
 
 class DistilBertForMultilabelSequenceClassification(DistilBertPreTrainedModel):
-
     def __init__(self, config):
         super(DistilBertForMultilabelSequenceClassification, self).__init__(config)
         self.num_labels = config.num_labels
@@ -43,12 +45,12 @@ class DistilBertForMultilabelSequenceClassification(DistilBertPreTrainedModel):
         self.init_weights()
 
     def forward(
-            self,
-            input_ids,
-            attention_mask=None,
-            head_mask=None,
-            labels=None,
-            class_weights=None,
+        self,
+        input_ids,
+        attention_mask=None,
+        head_mask=None,
+        labels=None,
+        class_weights=None,
     ):
         distilbert_output = self.distilbert(
             input_ids=input_ids,
@@ -69,7 +71,7 @@ class DistilBertForMultilabelSequenceClassification(DistilBertPreTrainedModel):
                 loss = loss_fct(logits.view(-1), labels.view(-1))
             else:
                 loss_fct = nn.BCEWithLogitsLoss(
-                    reduction='mean',
+                    reduction="mean",
                     pos_weight=class_weights,
                 )
                 loss = loss_fct(logits, labels)
@@ -86,15 +88,15 @@ def set_seed(seed):
 
 def train(train_dataset, model, train_params, class_weights=None):
     # TODO: magic numbers, defaults in run_glue.py
-    batch_size = train_params['batch_size']
-    n_epochs = train_params['epochs']
-    weight_decay = train_params['weight_decay']
-    learning_rate = train_params['learning_rate']
-    adam_epsilon = train_params['adam_epsilon']
-    warmup_steps = train_params['warmup_steps']
-    seed = train_params['seed']
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    max_grad_norm = train_params['max_grad_norm']
+    batch_size = train_params["batch_size"]
+    n_epochs = train_params["epochs"]
+    weight_decay = train_params["weight_decay"]
+    learning_rate = train_params["learning_rate"]
+    adam_epsilon = train_params["adam_epsilon"]
+    warmup_steps = train_params["warmup_steps"]
+    seed = train_params["seed"]
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    max_grad_norm = train_params["max_grad_norm"]
 
     train_sampler = RandomSampler(train_dataset)
     train_dataloader = DataLoader(
@@ -106,21 +108,23 @@ def train(train_dataset, model, train_params, class_weights=None):
     if class_weights is not None:
         class_weights = torch.from_numpy(class_weights).float().to(device)
 
-    no_decay = {'bias', 'LayerNorm.weight'}
+    no_decay = {"bias", "LayerNorm.weight"}
     optimizer_grouped_parameters = [
         {
-            'params': [
-                p for n, p in model.named_parameters()
+            "params": [
+                p
+                for n, p in model.named_parameters()
                 if not any(nd in n for nd in no_decay)
             ],
-            'weight_decay': weight_decay,
+            "weight_decay": weight_decay,
         },
         {
-            'params': [
-                p for n, p in model.named_parameters()
+            "params": [
+                p
+                for n, p in model.named_parameters()
                 if any(nd in n for nd in no_decay)
             ],
-            'weight_decay': 0.0,
+            "weight_decay": 0.0,
         },
     ]
     optimizer = AdamW(
@@ -137,7 +141,7 @@ def train(train_dataset, model, train_params, class_weights=None):
     global_step = 0
     tr_loss = 0.0
     model.zero_grad()
-    train_iter = trange(n_epochs, desc='Epoch')
+    train_iter = trange(n_epochs, desc="Epoch")
     set_seed(seed=seed)
     for _ in train_iter:
         epoch_iter = tqdm(train_dataloader, desc="Iteration")
@@ -145,11 +149,11 @@ def train(train_dataset, model, train_params, class_weights=None):
             model.train()
             batch = tuple(t.to(device) for t in batch)
             inputs = {
-                'input_ids': batch[0],
-                'attention_mask': batch[1],
+                "input_ids": batch[0],
+                "attention_mask": batch[1],
                 #'token_type_ids': batch[2],  # probably used for distilbert
-                'labels': batch[3],
-                'class_weights': class_weights,
+                "labels": batch[3],
+                "class_weights": class_weights,
             }
 
             outputs = model(**inputs)
@@ -174,13 +178,9 @@ def sigmoid(x):
 
 def evaluate(eval_dataset, model):
     batch_size = 8
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     eval_sampler = SequentialSampler(eval_dataset)
-    eval_loader = DataLoader(
-        eval_dataset,
-        sampler=eval_sampler,
-        batch_size=batch_size
-    )
+    eval_loader = DataLoader(eval_dataset, sampler=eval_sampler, batch_size=batch_size)
 
     preds = None
     out_label_ids = None
@@ -190,28 +190,28 @@ def evaluate(eval_dataset, model):
 
         with torch.no_grad():
             inputs = {
-                'input_ids': batch[0],
-                'attention_mask': batch[1],
+                "input_ids": batch[0],
+                "attention_mask": batch[1],
                 #'token_type_ids': batch[2],
-                'labels': batch[3]
+                "labels": batch[3],
             }
             outputs = model(**inputs)
             logits = outputs[1]
 
             if preds is None:
                 preds = logits.detach().cpu().numpy()
-                out_label_ids = inputs['labels'].detach().cpu().numpy()
+                out_label_ids = inputs["labels"].detach().cpu().numpy()
             else:
                 preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
                 out_label_ids = np.append(
                     out_label_ids,
-                    inputs['labels'].detach().cpu().numpy(),
+                    inputs["labels"].detach().cpu().numpy(),
                     axis=0,
                 )
 
     return {
-        'pred': sigmoid(preds),
-        'truth': out_label_ids,
+        "pred": sigmoid(preds),
+        "truth": out_label_ids,
     }
 
 
@@ -222,14 +222,19 @@ def tune_threshs(probas, truth):
     assert np.alltrue(probas < 1.0)
 
     for i in range(probas.shape[1]):
-        if np.sum(truth[:, i]) > 4 :
+        if np.sum(truth[:, i]) > 4:
             thresh = max(
                 np.linspace(
                     0.0,
                     1.0,
                     num=100,
                 ),
-                key=lambda t: f1_score(y_true=truth[:, i], y_pred=(probas[:, i] > t), pos_label=1, average='binary')
+                key=lambda t: f1_score(
+                    y_true=truth[:, i],
+                    y_pred=(probas[:, i] > t),
+                    pos_label=1,
+                    average="binary",
+                ),
             )
             res[i] = thresh
         else:
@@ -249,10 +254,7 @@ def apply_threshs(probas, threshs):
 
 
 def multihot_to_label_lists(label_array, label_map):
-    label_id_to_label = {
-        v: k
-        for k, v in label_map.items()
-    }
+    label_id_to_label = {v: k for k, v in label_map.items()}
     res = []
     for i in range(label_array.shape[0]):
         lbl_set = []
@@ -266,33 +268,26 @@ def multihot_to_label_lists(label_array, label_map):
 def subsample(data, quantile, n_classes):
     class_counts = np.zeros(n_classes, dtype=np.int32)
     for sample in data:
-        class_counts += (sample['label'] > 0)
+        class_counts += sample["label"] > 0
 
     cutoff = int(np.quantile(class_counts, q=quantile))
 
     n_to_sample = np.minimum(class_counts, cutoff)
 
-    index_map = {
-        i: []
-        for i in range(n_classes)
-    }
+    index_map = {i: [] for i in range(n_classes)}
     to_keep = set()
     for ix, sample in enumerate(data):
-        if np.sum(sample['label']) > 1:
+        if np.sum(sample["label"]) > 1:
             to_keep.add(ix)
-            n_to_sample -= (sample['label'] > 0)
+            n_to_sample -= sample["label"] > 0
         else:
-            label = np.argmax(sample['label'])
+            label = np.argmax(sample["label"])
             index_map[label].append(ix)
 
     for c in range(n_classes):
-        to_keep.update(index_map[c][:max(0, n_to_sample[c])])
+        to_keep.update(index_map[c][: max(0, n_to_sample[c])])
 
-    return [
-        d
-        for ix, d in enumerate(data)
-        if ix in to_keep
-    ]
+    return [d for ix, d in enumerate(data) if ix in to_keep]
 
 
 def main():
@@ -300,10 +295,8 @@ def main():
     parser = build_arg_parser()
     args = parser.parse_args()
 
-    """
-    if args.mode not in {'test', 'train'}:
+    if args.mode not in {"test", "train"}:
         raise ValueError(f"unknown mode {args.mode}, use 'test' or 'train'")
-    """
 
     if args.subsample_quantile is not None:
         if not (1.0 > args.subsample_quantile > 0.0):
@@ -316,47 +309,65 @@ def main():
 
     don_data = DonData(path=args.data)
 
-    model_name = 'distilbert-base-uncased'
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # model_name = "distilbert-base-uncased"
+    model_name = "legal-bert-small-uncased"  # add by raymond
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    config = DistilBertConfig.from_pretrained(model_name, num_labels=len(don_data.all_lbls))
+    """
+    config = DistilBertConfig.from_pretrained(
+        model_name, num_labels=len(don_data.all_lbls)
+    )
+    """
+    default_path = "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/legal-bert-small-uncased"
+    default_path = "C:\\Users\\wlzhao\\proj\\goal2021\\experiment\\legal-bert-small"
+    config_path = default_path + "\\config.json"
+    config = DistilBertConfig.from_pretrained(
+        config_path, num_labels=len(don_data.all_lbls)
+    )
+
+    """
     tokenizer = DistilBertTokenizer.from_pretrained(model_name, do_lower_case=True)
     model = DistilBertForMultilabelSequenceClassification.from_pretrained(
         model_name,
         config=config,
     )
+    """
+    # add by raymond
+    tokenizer = AutoTokenizer.from_pretrained(default_path)
+    model = AutoModel.from_pretrained(default_path, config=config)
+
     model.to(device)
 
-    if args.mode == 'train':
+    if args.mode == "train":
 
         train_params = {
-            'seed': args.seed or 0xDEADBEEF,
-            'batch_size': args.batch_size or 8,
-            'epochs': args.epochs or 1,
-            'weight_decay': args.weight_decay or 0.0,
-            'learning_rate': args.learning_rate or 5e-5,
-            'adam_epsilon': args.adam_epsilon or 1e-8,
-            'warmup_steps': args.warmup_steps or 0,
-            'max_grad_norm': args.max_grad_norm or 1.0,
+            "seed": args.seed or 0xDEADBEEF,
+            "batch_size": args.batch_size or 8,
+            "epochs": args.epochs or 1,
+            "weight_decay": args.weight_decay or 0.0,
+            "learning_rate": args.learning_rate or 5e-5,
+            "adam_epsilon": args.adam_epsilon or 1e-8,
+            "warmup_steps": args.warmup_steps or 0,
+            "max_grad_norm": args.max_grad_norm or 1.0,
         }
 
         # training
         train_data = don_data.train()
         if args.subsample_quantile is not None:
-            print('subsampling training data')
+            print("subsampling training data")
             train_data = subsample(
                 data=train_data,
                 quantile=args.subsample_quantile,
                 n_classes=len(don_data.all_lbls),
             )
 
-        print('construct training data tensor')
+        print("construct training data tensor")
         train_data = convert_examples_to_features(
             examples=train_data,
             max_seq_length=max_seq_length,
             tokenizer=tokenizer,
         )
-        print('start training')
+        print("start training")
         train(
             train_dataset=train_data,
             model=model,
@@ -366,50 +377,50 @@ def main():
 
         torch.save(model, args.model_path)
     else:
-        print('loading model', args.model_path)
+        print("loading model", args.model_path)
         if torch.cuda.is_available():
             model = torch.load(args.model_path)
         else:
-            model = torch.load(args.model_path, map_location='cpu')
+            model = torch.load(args.model_path, map_location="cpu")
 
-    print('construct dev tensor')
+    print("construct dev tensor")
     dev_data = convert_examples_to_features(
         examples=don_data.dev(),
         max_seq_length=max_seq_length,
         tokenizer=tokenizer,
     )
-    
-    print('predict dev set')
+
+    print("predict dev set")
     prediction_data = evaluate(eval_dataset=dev_data, model=model)
-    
-    print('tuning clf thresholds on dev')
+
+    print("tuning clf thresholds on dev")
     threshs = tune_threshs(
-        probas=prediction_data['pred'],
-        truth=prediction_data['truth'],
+        probas=prediction_data["pred"],
+        truth=prediction_data["truth"],
     )
 
     # eval
     print("using 'test' for computing test performance")
-    print('construct test tensor')
+    print("construct test tensor")
     test_data = convert_examples_to_features(
         examples=don_data.test(),
         max_seq_length=max_seq_length,
         tokenizer=tokenizer,
     )
 
-    print('predict test set')
+    print("predict test set")
     prediction_data = evaluate(eval_dataset=test_data, model=model)
 
     # tune thresholds
-    print('apply clf thresholds')
+    print("apply clf thresholds")
     predicted_mat = apply_threshs(
-        probas=prediction_data['pred'],
+        probas=prediction_data["pred"],
         threshs=threshs,
     )
 
     print("Result:")
     res = evaluate_multilabels(
-        y=multihot_to_label_lists(prediction_data['truth'], don_data.label_map),
+        y=multihot_to_label_lists(prediction_data["truth"], don_data.label_map),
         y_preds=multihot_to_label_lists(predicted_mat, don_data.label_map),
         do_print=True,
     )
@@ -423,21 +434,21 @@ def build_arg_parser():
         default=None,
         type=str,
         required=True,
-        help="Path to .jsonl file containing dataset"
+        help="Path to .jsonl file containing dataset",
     )
     parser.add_argument(
         "--mode",
         default="test",
         type=str,
         required=True,
-        help="which mode: 'train' or 'test'"
+        help="which mode: 'train' or 'test'",
     )
     parser.add_argument(
         "--model_path",
-        default='./distilbert.pt',
+        default="./distilbert.pt",
         type=str,
         required=False,
-        help="path to model file, default ./distilbert.pt"
+        help="path to model file, default ./distilbert.pt",
     )
     parser.add_argument(
         "--subsample_quantile",
@@ -445,15 +456,15 @@ def build_arg_parser():
         type=float,
         required=False,
         help="subsample training data such that every class has at most"
-             " as many samples as the quantile provided,"
-             " no subsampling if set to None, default None"
+        " as many samples as the quantile provided,"
+        " no subsampling if set to None, default None",
     )
     parser.add_argument(
         "--use_class_weights",
         default=True,
         type=bool,
         required=False,
-        help="use balanced class weights for training, default True"
+        help="use balanced class weights for training, default True",
     )
     parser.add_argument(
         "--seed",
@@ -522,5 +533,5 @@ def build_arg_parser():
     return parser
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
