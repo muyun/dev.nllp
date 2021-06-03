@@ -31,12 +31,60 @@ import numpy as np
 from distilbert_data_utils import DonData, convert_examples_to_features
 from utils import evaluate_multilabels
 
-# Creating the loss function and optimizer
-loss_fct = nn.CrossEntropyLoss()
-#loss_fct = nn.MSELoss()
+default_path = "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/legal-bert-small-uncased"
+default_path = "C:\\Users\\wlzhao\\proj\\goal2021\\experiment\\legal-bert-small-uncased"
 
-#optimizer = torch.optim.Adam(params =  model.parameters(), lr=LEARNING_RATE)
 
+class LegalBertClass(nn.Module):
+    def __init__(self, config, distilbert_config):
+        super(LegalBertClass, self).__init__()
+        self.num_labels = distilbert_config.num_labels
+
+        self.legalbert = AutoModel.from_pretrained(default_path,config)
+
+        self.pre_classifier = torch.nn.Linear(512, 768)
+        #self.classifier = torch.nn.Linear(768, 4)
+        self.classifier = nn.Linear(distilbert_config.dim, distilbert_config.num_labels)
+
+        self.dropout = nn.Dropout(distilbert_config.seq_classif_dropout)
+
+        # self.init_weights()
+        nn.init.xavier_normal_(self.classifier.weight)
+
+    def forward(
+        self,
+        input_ids,
+        attention_mask=None,
+        head_mask=None,
+        labels=None,
+        class_weights=None,
+    ):
+        legalbert_output = self.legalbert(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            head_mask=head_mask,
+        )
+        hidden_state = legalbert_output[0]
+        pooled_output = hidden_state[:, 0]
+        pooled_output = self.pre_classifier(pooled_output)
+        pooled_output = nn.ReLU()(pooled_output)
+        pooled_output = self.dropout(pooled_output)
+        logits = self.classifier(pooled_output)
+
+        outputs = (logits,) + legalbert_output[1:]
+        if labels is not None:
+            if self.num_labels == 1:
+                loss_fct = nn.MSELoss()
+                loss = loss_fct(logits.view(-1), labels.view(-1))
+            else:
+                loss_fct = nn.BCEWithLogitsLoss(
+                    reduction="mean",
+                    pos_weight=class_weights,
+                )
+                loss = loss_fct(logits, labels)
+            outputs = (loss,) + outputs
+
+        return outputs
 
 
 class DistilBertForMultilabelSequenceClassification(DistilBertPreTrainedModel):
@@ -89,13 +137,12 @@ class DistilBertForMultilabelSequenceClassification(DistilBertPreTrainedModel):
 #add by raymond
 # Creating the customized model, by adding a drop out and a dense layer on top of distil bert to get the final output for the model. 
     #model = AutoModel.from_pretrained(default_path, config=config)
-default_path = "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/legal-bert-small-uncased"
-default_path = "C:\\Users\\wlzhao\\proj\\goal2021\\experiment\\legal-bert-small-uncased"
+
 config_path = default_path + "\\config.json"
 
 
 class LegalBERTClass(torch.nn.Module):
-    def __init__(self, config):
+    def __init__(self, config, LegalBertClass):
         #super(DistilBertForMultilabelSequenceClassification, self).__init__(config)
         #super(LegalBERTClass, self).__init__(config)
         """
@@ -299,9 +346,9 @@ def evaluate(eval_dataset, model):
                 "labels": batch[3],
             }
             #add by raymond
-            input_ids = batch[0]
-            attention_mask = batch[1] 
-            labels = batch[3]
+            #input_ids = batch[0]
+            #attention_mask = batch[1] 
+            #labels = batch[3]
 
             #outputs = model(input_ids, attention_mask).squeeze()
 
@@ -441,22 +488,23 @@ def main():
 
     don_data = DonData(path=args.data)
 
-    # model_name = "distilbert-base-uncased"
+    distilbert_model_name = "distilbert-base-uncased"
     model_name = "legal-bert-small-uncased"  # add by raymond
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+    distilbert_config = DistilBertConfig.from_pretrained(
+        distilbert_model_name, num_labels=len(don_data.all_lbls)
+    )
+
+    # default_path = "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/legal-bert-small-uncased"
+    config_path = default_path + "/config.json"
     """
     config = DistilBertConfig.from_pretrained(
-        model_name, num_labels=len(don_data.all_lbls)
+        config_path, num_labels=len(don_data.all_lbls)
     )
     """
-     
-    #add by raymond
-    config = AutoConfig.from_pretrained(  
-        config_path, num_labels=len(don_data.all_lbls)
-        )
-    
-    
+    config = AutoConfig.from_pretrained(config_path)
+
     """
     tokenizer = DistilBertTokenizer.from_pretrained(model_name, do_lower_case=True)
     model = DistilBertForMultilabelSequenceClassification.from_pretrained(
@@ -467,21 +515,9 @@ def main():
     
     # add by raymond
     tokenizer = AutoTokenizer.from_pretrained(default_path, do_lower_case=True)
-    #model = AutoModel.from_pretrained(default_path, config=config)
-    #model = AutoModel.from_pretrained(default_path)
-    model = LegalBERTClass(
-        #model_name,
-        config=config
-    )
+    # model = AutoModel.from_pretrained(default_path, config=config)
 
-    """
-    tokenizer = DistilBertTokenizer.from_pretrained(default_path, do_lower_case=True)
-    model = DistilBertForMultilabelSequenceClassification.from_pretrained(
-        default_path,
-        config=config,
-    )
-    """
-
+    model = LegalBertClass(config=config, distilbert_config=distilbert_config)
     model.to(device)
 
     if args.mode == "train":
