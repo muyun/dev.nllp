@@ -5,3 +5,4 @@ experiment/legal-bert-base-uncased/*
 experiment/legal-bert-small-uncased/*
 experiment/ledgar-code/distilbert.pt
 experiment/data/*.jsonl
+workspace.code-workspace
