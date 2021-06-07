@@ -1,13 +1,18 @@
 #### note  
 
+##### 2021-06-04  
+
+* TODO  
+    - try to use the server  
+
 ##### 2021-06-03  
 
-* update the legalbert_baseline.py code 
+* update the legalbert_baseline.py  
     - learn more about deeplearning, especially on parameters  
     - it works, and a bit excited actually, but boring  
 
 * TODO  
-    - check the workspace  
+    - check the server  
     - [自學粵語 (一)](https://www.ilc.cuhk.edu.hk/EN/workshops.aspx)
 
 ##### 2021-06-02  
@@ -29,7 +34,7 @@ itecture (e.g. initializing a BertForSequenceClassification model from a BertFor
 construct training data tensor
 start training
 Iteration:   0%|                                                                                     | 0/56297 [00:00<?, ?it/s]
-Epoch:   0%|                                                                                             | 0/1 [00:00<?, ?it/s]
+Epoch:   0%|                                                                                     | 0/1 [00:00<?, ?it/s]
 
 ##### 2021-06-01  
 
@@ -145,7 +150,13 @@ Epoch:   0%|                                                                    
         + Some python ebook from cuhk
 
 * INFO
-    - workstation @cuhk
+    - workstation @cuhk 
+       > ssh wlzhao@seis01.se.cuhk.edu.hk  
+           + 3 11G GPU - debug 
+           + /misc/projdata17/infofil/wlzhao/data
+       > ssh wlzhao@sepc429.se.cuhk.edu.hk  
+           + 6 24G GPU - submit tasks 
+           + /misc/projdata11/info_fil/wlzhao
        > ssh wlzhao@137.189.56.6
        > ssh wlzhao@137.189.59.36
 
