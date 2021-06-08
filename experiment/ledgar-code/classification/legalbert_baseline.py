@@ -31,8 +31,12 @@ import numpy as np
 from distilbert_data_utils import DonData, convert_examples_to_features
 from utils import evaluate_multilabels
 
-default_path = "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/legal-bert-small-uncased"
-default_path = "C:\\Users\\wlzhao\\proj\\goal2021\\experiment\\legal-bert-small-uncased"
+default_path = (
+    "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/legal-bert-small-uncased"
+)
+# default_path = "C:\\Users\\wlzhao\\proj\\goal2021\\experiment\\legal-bert-small-uncased"
+# run on linux server
+new_cache_dir = "/misc/projdata17/infofil/wlzhao/.new_cache_dir"
 
 
 class LegalBertClass(nn.Module):
@@ -40,10 +44,10 @@ class LegalBertClass(nn.Module):
         super(LegalBertClass, self).__init__()
         self.num_labels = distilbert_config.num_labels
 
-        self.legalbert = AutoModel.from_pretrained(default_path,config)
+        self.legalbert = AutoModel.from_pretrained(default_path, config)
 
         self.pre_classifier = torch.nn.Linear(512, 768)
-        #self.classifier = torch.nn.Linear(768, 4)
+        # self.classifier = torch.nn.Linear(768, 4)
         self.classifier = nn.Linear(distilbert_config.dim, distilbert_config.num_labels)
 
         self.dropout = nn.Dropout(distilbert_config.seq_classif_dropout)
@@ -134,17 +138,18 @@ class DistilBertForMultilabelSequenceClassification(DistilBertPreTrainedModel):
 
         return outputs
 
-#add by raymond
-# Creating the customized model, by adding a drop out and a dense layer on top of distil bert to get the final output for the model. 
-    #model = AutoModel.from_pretrained(default_path, config=config)
+
+# add by raymond
+# Creating the customized model, by adding a drop out and a dense layer on top of distil bert to get the final output for the model.
+# model = AutoModel.from_pretrained(default_path, config=config)
 
 config_path = default_path + "\\config.json"
 
 
 class LegalBERTClass(torch.nn.Module):
     def __init__(self, config, LegalBertClass):
-        #super(DistilBertForMultilabelSequenceClassification, self).__init__(config)
-        #super(LegalBERTClass, self).__init__(config)
+        # super(DistilBertForMultilabelSequenceClassification, self).__init__(config)
+        # super(LegalBERTClass, self).__init__(config)
         """
         self.pre_classifier = torch.nn.Linear(768, 768)
         self.dropout = torch.nn.Dropout(0.3)
@@ -157,7 +162,6 @@ class LegalBERTClass(torch.nn.Module):
         self.dropout = nn.Dropout(config.seq_classif_dropout)
 
         self.init_weights()
-
 
     def forward(
         self,
@@ -203,6 +207,7 @@ def set_seed(seed):
 
 loss_function = torch.nn.CrossEntropyLoss()
 
+
 def train(train_dataset, model, train_params, class_weights=None):
     # TODO: magic numbers, defaults in run_glue.py
     batch_size = train_params["batch_size"]
@@ -244,20 +249,19 @@ def train(train_dataset, model, train_params, class_weights=None):
             "weight_decay": 0.0,
         },
     ]
-    #optimizer = torch.optim.Adam(params =  model.parameters(), lr=LEARNING_RATE)
+    # optimizer = torch.optim.Adam(params =  model.parameters(), lr=LEARNING_RATE)
 
     optimizer = AdamW(
         optimizer_grouped_parameters,
         lr=learning_rate,
         eps=adam_epsilon,
     )
-    
+
     scheduler = WarmupLinearSchedule(
         optimizer=optimizer,
         warmup_steps=warmup_steps,
         t_total=len(train_dataloader) // n_epochs,
     )
-    
 
     global_step = 0
     tr_loss = 0.0
@@ -273,13 +277,13 @@ def train(train_dataset, model, train_params, class_weights=None):
                 "input_ids": batch[0],
                 "attention_mask": batch[1],
                 #'token_type_ids': batch[2],  # probably used for distilbert
-                "labels": batch[3],   #comment by raymond 
-                "class_weights": class_weights, #comment by raymond
+                "labels": batch[3],  # comment by raymond
+                "class_weights": class_weights,  # comment by raymond
             }
 
             input_ids = batch[0]
             attention_mask = batch[1]
-            labels =  batch[3]
+            labels = batch[3]
 
             outputs = model(**inputs)
             loss = outputs[0]
@@ -316,7 +320,7 @@ def train(train_dataset, model, train_params, class_weights=None):
             optimizer.step()
             scheduler.step()
             model.zero_grad()
-            
+
             global_step += 1
 
     return global_step, tr_loss / global_step
@@ -345,15 +349,15 @@ def evaluate(eval_dataset, model):
                 #'token_type_ids': batch[2],
                 "labels": batch[3],
             }
-            #add by raymond
-            #input_ids = batch[0]
-            #attention_mask = batch[1] 
-            #labels = batch[3]
+            # add by raymond
+            # input_ids = batch[0]
+            # attention_mask = batch[1]
+            # labels = batch[3]
 
-            #outputs = model(input_ids, attention_mask).squeeze()
+            # outputs = model(input_ids, attention_mask).squeeze()
 
             outputs = model(**inputs)
-            #logits = outputs[1]
+            # logits = outputs[1]
 
             """
 
@@ -377,16 +381,15 @@ def evaluate(eval_dataset, model):
             if preds is None:
                 preds = logits.detach().cpu().numpy()
                 out_label_ids = inputs["labels"].detach().cpu().numpy()
-                #out_label_ids = input_ids.detach().cpu().numpy()
+                # out_label_ids = input_ids.detach().cpu().numpy()
             else:
                 preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
                 out_label_ids = np.append(
                     out_label_ids,
                     inputs["labels"].detach().cpu().numpy(),
-                    #input_ids.detach().cpu().numpy(),
+                    # input_ids.detach().cpu().numpy(),
                     axis=0,
                 )
-            
 
     return {
         "pred": sigmoid(preds),
@@ -493,7 +496,9 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     distilbert_config = DistilBertConfig.from_pretrained(
-        distilbert_model_name, num_labels=len(don_data.all_lbls)
+        distilbert_model_name,
+        num_labels=len(don_data.all_lbls),
+        cache_dir=new_cache_dir,
     )
 
     # default_path = "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/legal-bert-small-uncased"
@@ -512,9 +517,11 @@ def main():
         config=config,
     )
     """
-    
+
     # add by raymond
-    tokenizer = AutoTokenizer.from_pretrained(default_path, do_lower_case=True)
+    tokenizer = AutoTokenizer.from_pretrained(
+        default_path, cache_dir=new_cache_dir, do_lower_case=True
+    )
     # model = AutoModel.from_pretrained(default_path, config=config)
 
     model = LegalBertClass(config=config, distilbert_config=distilbert_config)
