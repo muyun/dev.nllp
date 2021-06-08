@@ -2,6 +2,10 @@
 #### paper  
 #####  get new knowldege  
 
+##### Writing the first paper  
+
+
+
 ##### Reading a paper  
 * the abstract / title  -> check **whether the paper is interesting or not**  
     - why the paper is interesting according to the authors  
@@ -32,8 +36,6 @@
 * Conclusions  
     - skip  
 
-
-##### Writing the first paper  
 
 
 ##### Presentation  

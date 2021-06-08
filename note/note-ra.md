@@ -1,5 +1,12 @@
 #### note  
 
+#### 2021-06-08  
+* TODO  
+    - try to use the server  
+    - nllpenv 
+    > virtualenv /misc/projdata17/infofil/wlzhao/.env/nllpenv 
+    > source .env/nllpenv/bin/activate.csh  
+
 ##### 2021-06-04  
 
 * TODO  
