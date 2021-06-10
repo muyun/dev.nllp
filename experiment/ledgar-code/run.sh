@@ -6,7 +6,5 @@
 #SBATCH --mem=10000M
 #SBATCH --partition=infofil01
 
-#DIR=/misc/projdata11/info_fil/wlzhao/workspace
-#echo -n "I'm on host: "
-#hostname
+#tasks
 /misc/projdata11/info_fil/wlzhao/workspace/env/nllpenv/bin/python3 run_legalbert.py
