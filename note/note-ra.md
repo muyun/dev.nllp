@@ -1,11 +1,37 @@
 #### note  
 
+#### 2021-06-10  
+* TODO  
+    - use the server to run  
+    > ssh wlzhao@sepc429.se.cuhk.edu.hk  
+        + 6 24G GPU - submit tasks 
+        + /misc/projdata11/info_fil/wlzhao 
+    > source env/nllpenv/bin/activate.csh  
+
+        + use subprocess to package the args
+
+
+    - read the papers  
+
+    - do some programming  
+
 #### 2021-06-08  
 * TODO  
     - try to use the server  
-    - nllpenv 
+    - nllpenv env 
     > virtualenv /misc/projdata17/infofil/wlzhao/.env/nllpenv 
-    > source .env/nllpenv/bin/activate.csh  
+    > source /misc/projdata17/infofil/wlzhao/.env/nllpenv/bin/activate.csh  
+
+* try to use another server  
+    - update the cache config
+    - add bash script to submit gpu task  
+    >#!/bin/bash
+    #SBATCH --nodes=1
+    #SBATCH --gres=gpu:1
+    #SBATCH --ntasks=1
+    #SBATCH --cpus-per-task=1
+    #SBATCH --mem=10000M
+    #SBATCH --partition=infofil01
 
 ##### 2021-06-04  
 
@@ -59,7 +85,6 @@ Epoch:   0%|                                                                    
 
     - some programming  
     
-
     - read the paper <legal bert>  
 
 * SUMMARY  

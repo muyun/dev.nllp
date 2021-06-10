@@ -35,6 +35,7 @@ default_path = (
     "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/legal-bert-small-uncased"
 )
 # default_path = "C:\\Users\\wlzhao\\proj\\goal2021\\experiment\\legal-bert-small-uncased"
+default_path = "/misc/projdata11/info_fil/wlzhao/workspace/legal-bert-small-uncased"
 # run on linux server
 new_cache_dir = "/misc/projdata17/infofil/wlzhao/.new_cache_dir"
 
