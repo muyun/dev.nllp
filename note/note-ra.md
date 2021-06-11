@@ -1,5 +1,17 @@
 #### note  
 
+##### 2021-06-11
+
+* command  
+    > sbatch ./run.sh 
+    > cat slurm-1112.out <- 
+
+    > squeue <- check server status 
+
+    > nvidia-smi  <- check gpu status  
+    > scancel <id> <- cancel jobid 
+
+
 #### 2021-06-10  
 * TODO  
     - use the server to run  
