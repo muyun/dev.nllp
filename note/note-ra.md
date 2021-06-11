@@ -2,9 +2,9 @@
 
 ##### 2021-06-11
 
-* command  
+* gpu commands  
     > sbatch ./run.sh 
-    > cat slurm-1112.out 
+    > cat slurm-1115.out 
 
     > squeue <- check server status 
 
