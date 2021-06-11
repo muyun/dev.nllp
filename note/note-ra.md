@@ -1,6 +1,9 @@
 #### note  
 
-##### 2021-06-11
+##### 2021-06-11 
+
+* run on the server with the parameters 
+    - tocheck the result on  slurm-11159.out  
 
 * gpu commands  
     > sbatch ./run.sh 
