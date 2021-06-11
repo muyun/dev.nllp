@@ -4,12 +4,12 @@
 
 * command  
     > sbatch ./run.sh 
-    > cat slurm-1112.out <- 
+    > cat slurm-1112.out 
 
     > squeue <- check server status 
 
     > nvidia-smi  <- check gpu status  
-    > scancel <id> <- cancel jobid 
+    > scancel <id> <- cancel job id 
 
 
 #### 2021-06-10  
@@ -19,7 +19,7 @@
         + 6 24G GPU - submit tasks 
         + /misc/projdata11/info_fil/wlzhao 
     > source env/nllpenv/bin/activate.csh  
-
+        + [run_legalbert.py](https://github.com/muyun/dev.nllp/blob/master/experiment/ledgar-code/run_legalbert.py)
         + use subprocess to package the args
 
 
