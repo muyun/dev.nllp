@@ -17,7 +17,7 @@
     - use the server to run  
     > ssh wlzhao@sepc429.se.cuhk.edu.hk  
         + 6 24G GPU - submit tasks 
-        + /misc/projdata11/info_fil/wlzhao 
+        + /misc/projdata11/info_fil/wlzhao/workspace
     > source env/nllpenv/bin/activate.csh  
         + [run_legalbert.py](https://github.com/muyun/dev.nllp/blob/master/experiment/ledgar-code/run_legalbert.py)
         + use subprocess to package the args
