@@ -1,3 +1,3 @@
 #### Legal Text Classification  
 
-#### &copy CUHK 2021
+#####  Copyright (c) CUHK 2021
