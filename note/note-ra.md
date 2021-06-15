@@ -1,8 +1,19 @@
 #### note  
 
 ##### 2021-06-15  
-* submit the command on server  
-    - check the result on slurm-11345.out
+
+* run on the server to get the optimized parameters   
+    - check the result on slurm-11345.out 
+
+
+* read papers  
+
+* note on text classificaton 
+    - **standardized by tags from unstructured text**  
+    - Tagging functions  
+
+* TODO 
+    - read some on deeplearning  
 
 ##### 2021-06-11 
 
