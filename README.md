@@ -1,3 +1,3 @@
 #### Legal Text Classification  
 
-#####  &copy 2021 CUHK 
+#####  &copy; 2021 CUHK 
