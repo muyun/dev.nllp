@@ -1,5 +1,9 @@
 #### note  
 
+##### 2021-06-15  
+* submit the command on server  
+    - check the result on slurm-11345.out
+
 ##### 2021-06-11 
 
 * run on the server with the parameters 
