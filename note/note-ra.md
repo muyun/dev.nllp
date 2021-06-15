@@ -1,12 +1,18 @@
 #### note  
 
+##### 2021-06-16  
+* submit the running result  
+
+* read the paper LEDGAR, and try to run it on  the server  
+
+* some programming  
+
 ##### 2021-06-15  
 
 * run on the server to get the optimized parameters   
     - check the result on slurm-11345.out 
 
-
-* read papers  
+* read paper "LEDGAR"
 
 * note on text classificaton 
     - **standardized by tags from unstructured text**  
