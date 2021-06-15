@@ -14,6 +14,7 @@
 
 * TODO 
     - read some on deeplearning  
+    - config vscode to ssh remote servers
 
 ##### 2021-06-11 
 
