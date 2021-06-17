@@ -1,4 +1,3 @@
-#### Legal Text Classification  
-* Tagging
+#### natual legal language processing    
 
 #####  &copy; 2021 CUHK 

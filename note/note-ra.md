@@ -1,11 +1,21 @@
 #### note  
 
+##### 2021-06-17  
+* read the paper lexNLP 
+
+* **other legal texts** not only on commercial applications  
+    - such as judgments, skeleton arguments, scholarly articles, law commission reports, pleadings etc.  
+    - **automatically extract information from long, unstructured legal texts** 
+    - [Blackstone](https://research.iclr.co.uk/blog/blackstone-goes-live)
+ 
+
 ##### 2021-06-16  
 * submit the running result  
 
 * read the paper LEDGAR, and try to run it on  the server  
 
 * some programming  
+
 
 ##### 2021-06-15  
 
