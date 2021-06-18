@@ -3,12 +3,13 @@
 ##### 2021-06-17  
 * read the paper lexNLP 
 
-*  * **other legal texts** not only on commercial applications  
+*  Blackstone in Hong Kong 
+    - **other legal texts** not only on commercial applications  
     - such as judgments, skeleton arguments, scholarly articles, law commission reports, pleadings etc.  
 
     - **understaning of the meaning of the text and how it might fit into 
 a larger corpus of text**   
-        + reference, quote, submission ?  
+        + reference, quote, submission  
         + re-use of that content for other useful purposes  
 
     - **automatically extract information from long, unstructured legal texts** 
