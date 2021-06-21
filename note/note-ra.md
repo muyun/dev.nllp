@@ -1,5 +1,9 @@
 #### note  
 
+##### 2021-06-21  
+* think about the opinions and papers  
+    - how?    
+
 ##### 2021-06-17  
 * read the paper lexNLP 
 
