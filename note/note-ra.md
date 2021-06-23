@@ -1,5 +1,36 @@
 #### note  
 
+##### 2021-06-24  
+* TODO  
+    -  read the 'contract discovery' paper again  
+    -  combine the ideas  
+    -  formalize them  
+
+##### 2021-06-23  
+* TODO  
+    - paper reading  
+    - the  CUDA paper 
+        + how well NLP language models generalize to specialized domains  
+            - **model design**, model size   
+            - Data: **high-quality domain-specific annotated data**  than more unlabeled domain-specific data  
+
+        + CUDA dataset  
+            - large legal (specialized) **annotated** data 
+        
+        + method
+            - models learn to highlight important clauses to that label  
+
+    - Contract Discovery  
+        + **semantic retrieval of relevant clauses or their retrieval**  from legal texts  => more annotated data
+
+
+* more focus  
+
+##### 2021-06-22  
+* think about the papers  
+
+* so tired  
+
 ##### 2021-06-21  
 * think about the opinions and papers  
     - how?    
