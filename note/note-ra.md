@@ -1,10 +1,21 @@
 #### note  
 
+##### 2021-07-02  
+* TODO
+    - think about your goal  
+    - co-work with the law? 
+
+##### 2021-06-25  
+* TODO  
+    - scrape the definitation  from [CUDA](https://zenodo.org/record/4595826#.YNU88BMzbUI)  
+    - for example: 
+     "CUSTOMERS" means all users who access Co-Branded Site. 
+     
+
 ##### 2021-06-24  
 * TODO  
     -  read the 'contract discovery' paper again  
-    -  combine the ideas  
-    -  formalize them  
+    -  combine and formalize the ideas  ?
 
 ##### 2021-06-23  
 * TODO  
