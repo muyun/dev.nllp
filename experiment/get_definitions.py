@@ -21,7 +21,7 @@ def write_docs(sources: pathlib.Path, filename: str):
             f.write(str(source) + "\n")
             #
             for line in content.split("\n"):
-                if "means" or "mean" in line:
+                if "means" in line:
                     #print("line: ", line)
                     f.write(str(line) + "\n")
         else:
