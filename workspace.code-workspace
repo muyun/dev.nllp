@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../dev.programminglanguage"
+		},
+		{
+			"path": "../dev.newblog"
 		}
 	],
 	"settings": {}
