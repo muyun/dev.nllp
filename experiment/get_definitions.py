@@ -21,7 +21,7 @@ def write_docs(sources: pathlib.Path, filename: str):
             f.write(str(source) + "\n")
             #
             for line in content.split("\n"):
-                if "means" in line:
+                if re.search(r'("\w+"\s+)means', line):
                     #print("line: ", line)
                     f.write(str(line) + "\n")
         else:
