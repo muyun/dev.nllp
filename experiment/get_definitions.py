@@ -18,7 +18,8 @@ def write_docs(sources: pathlib.Path, filename: str):
         f = pathlib.Path(filename).open("a")
         if re.search("DEFINITIONS", content):
             print("src: ", source)
-            f.write(str(source) + "\n")
+            f.write(str(source))
+            f.write("\n")
             #
             for line in content.split("\n"):
                 if re.search(r'("\w+"\s+)means', line):
