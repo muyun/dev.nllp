@@ -8,3 +8,4 @@ experiment/data/*.jsonl
 workspace.code-workspace
 experiment/lmtc/data/*
 note/*
+.gitignore
