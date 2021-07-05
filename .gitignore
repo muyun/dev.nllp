@@ -7,5 +7,5 @@ experiment/ledgar-code/distilbert.pt
 experiment/data/*.jsonl
 workspace.code-workspace
 experiment/lmtc/data/*
-note/*
+_note
 .gitignore
