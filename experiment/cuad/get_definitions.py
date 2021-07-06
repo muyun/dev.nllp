@@ -35,5 +35,5 @@ def write_docs(sources: pathlib.Path, filename: str):
 if __name__ == '__main__':
     src = "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/cuad/full_contract_txt"
     sources = get_sources(src)
-    filename = "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/data/definitions.md"
+    filename = "/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/result/definitions.md"
     write_docs(sources, filename)
