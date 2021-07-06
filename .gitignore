@@ -9,4 +9,5 @@ workspace.code-workspace
 experiment/lmtc/data/*
 _note
 .gitignore
-experiment/full_contract_txt/*
+experiment/cuad/full_contract_txt/*
+experiment/cuad/CUADv1.json

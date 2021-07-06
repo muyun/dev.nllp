@@ -1,5 +1,14 @@
 #### note  
 
+##### 2021-07-06 
+* TODO  
+    - clean, and format the CUAD data  
+    - the experiment on longformer paper  
+    - check more global information apart from the 'DEFINITIONS'  
+
+* info
+    - /misc/projdata11/info_fil/wwxu/WorkSpace/cuad-bak
+
 ##### 2021-07-05  
 * think about your goal   
     - entrepreneur 
