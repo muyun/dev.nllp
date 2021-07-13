@@ -42,12 +42,16 @@ def write_docs(filename: str):
         # source = SRC + \
         #    'HarpoonTherapeuticsInc_20200312_10-K_EX-10.18_12051356_EX-10.18_Development Agreement.txt'
         # grep 'DEFINITIONS'
-        content = parse_source(source)
-        if not content:
-            continue
+
         #f = pathlib.Path(filename).open("a")
         # store the 'DEFINITIONS' in list
         defn_data = []
+
+        content = parse_source(source)
+        if not content:
+            data_one['definition'] = defn_data
+            continue
+
         if re.search("DEFINITIONS", content):
             print("src: ", str(source).split('/')[-1])
             # f.write(str(source))
