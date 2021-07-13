@@ -10,4 +10,4 @@ experiment/lmtc/data/*
 _note
 .gitignore
 experiment/cuad/full_contract_txt/*
-experiment/cuad/CUADv1.json
+experiment/cuad/*.json

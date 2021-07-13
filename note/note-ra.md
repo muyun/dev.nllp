@@ -1,5 +1,13 @@
 #### note  
 
+##### 2021-07-13  
+* TODO  
+    - finish the code on 'DEFINITIONS'  
+
+* info
+    - the new json: cuad_new_test.json, cuad_new_train.json
+    - /misc/projdata11/info_fil/wlzhao/workspace/data
+
 ##### 2021-07-06 
 * TODO  
     - clean, and format the CUAD data  
