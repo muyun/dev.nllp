@@ -1,5 +1,11 @@
 #### note  
 
+##### 2021-07-15 
+
+* TODO  
+    - update json directly  
+    - add matching rules to find more cases  
+
 ##### 2021-07-13  
 * TODO  
     - finish the code on 'DEFINITIONS'  
@@ -18,10 +24,6 @@
     - /misc/projdata11/info_fil/wwxu/WorkSpace/cuad-bak
 
 ##### 2021-07-05  
-* think about your goal   
-    - entrepreneur 
-    - engineering and management skills  
-
 * write the code to scrape the DEFINITIONS forms  
 
 ##### 2021-07-02  
