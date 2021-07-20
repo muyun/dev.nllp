@@ -32,7 +32,7 @@ def write_docs(srcname: str, filename: str):
     test_f = SRC + 'test.json'
     # test_f = SRC + 'new1.json'
     tsq_f = SRC + 'train.json'
-    test_f = read_json(tsq_f)
+    json_f = read_json(tsq_f)
 
     cnt_definition = 0
     cnt_mean = 0
@@ -42,7 +42,7 @@ def write_docs(srcname: str, filename: str):
     pattern_1 = re.compile('"([\w+\s]+)" means(,*) (.*)')
     pattern_2 = re.compile('"([\w+\s]+)" shall mean (.*)')
 
-    for i_d, data_one in enumerate(test_f['data']):
+    for i_d, data_one in enumerate(json_f['data']):
         if not srcname:
             content = data_one['paragraphs'][0]['context']
         else:  # for DEBUG
@@ -107,9 +107,9 @@ def write_docs(srcname: str, filename: str):
         data_one['definition'] = defn_data
 
     print("num of files including 'DEFINITION:", cnt_definition)
-    print("num of files including 'mean:", cnt_mean)
+    print("num of lines including 'mean:", cnt_mean)
     with open(filename, 'w') as f:
-        json.dump(test_f, f)
+        json.dump(json_f, f)
 
     return
 
