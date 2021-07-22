@@ -26,90 +26,98 @@ def parse_source(source: pathlib.Path) -> str:
     return post
 
 
+def search(content: str):
+    """ search the following patterns in content
+    """
+    # print("src: ", srcname)
+
+    dict = {}
+    # so BAD
+    pattern_1 = re.compile(
+        '"([\w+\s]+)" means? (.*)',  flags=re.IGNORECASE)
+    pattern_2 = re.compile(
+        '"([\w+\s]+)" shall mean (.*)', flags=re.IGNORECASE)
+    pattern_3 = re.compile('([\w+\s]+): (.*)')
+
+    # cnt_mean = 0
+    for line in content.split("\n"):
+        sentences = line.split(".")
+        for sentence in sentences:
+            sentence = sentence.strip()
+            # cnt_mean += 1
+            if len(sentence) < 5:
+                continue
+
+            print("the sentence:", sentence)
+            # format one
+            searchObj = re.findall(
+                pattern_1, sentence)
+            if not searchObj:
+                # format two
+                searchObj = re.findall(
+                    pattern_2, sentence)
+                if not searchObj:
+                    # format three
+                    searchObj = re.findall(
+                        pattern_3, sentence)
+
+                    # BUGS
+                    if searchObj and (len(searchObj[0][0].strip()) > 20 or
+                                      len(searchObj[0][1].strip()) < 10):
+                        continue
+                    if not searchObj:
+                        continue
+
+            print("searchObj: ", searchObj)
+            # matchObj = re.search
+            print("key words: ", searchObj[0][0])
+            print("Definition: ", searchObj[0][1])
+            # print("line: ", line)
+            dict[searchObj[0][0]] = searchObj[0][1]
+            # f.write(str(line) + "\n")
+
+    return dict
+
+
 def write_docs(srcname: str, filename: str):
-    # sources = get_sources()
-
-    test_f = SRC + 'test.json'
-    # test_f = SRC + 'new1.json'
-    tsq_f = SRC + 'train.json'
-    json_f = read_json(tsq_f)
-
+    """ write the fitted content from srcname into filename
+    """
     cnt_definition = 0
     cnt_mean = 0
     # rule and the related patterns
     # RULE 1:grep 'DEFINITIONS'
-    rule_1 = re.compile("DEFINITIONS", flags=re.IGNORECASE)
-    pattern_1 = re.compile('"([\w+\s]+)" means(,*) (.*)')
-    pattern_2 = re.compile('"([\w+\s]+)" shall mean (.*)')
+    rule_1 = re.compile("DEFINITIONS|Definitions", flags=re.IGNORECASE)
+    #pattern = re.compile('mean(s*)', flags=re.IGNORECASE)
+    # pattern_1 = re.compile('"([\w+\s]+)" means(,*) (.*)')
+    # pattern_2 = re.compile('"([\w+\s]+)" shall mean (.*)')
 
-    for i_d, data_one in enumerate(json_f['data']):
-        if not srcname:
+    defn_data = []
+    if srcname:
+        # sources = get_sources()
+        # source = SRC + 'full_contract_txt/' + data_one['title'] + '.txt'
+        print("src: ", srcname)
+        content = parse_source(srcname)
+        defn_data.append(search(content))
+    else:
+        test_f = SRC + 'test.json'
+        train_f = SRC + 'train.json'
+
+        json_f = read_json(test_f)
+
+        for i_d, data_one in enumerate(json_f['data']):
+            print("src: ", data_one['title'])
             content = data_one['paragraphs'][0]['context']
-        else:  # for DEBUG
-            # source = SRC + 'full_contract_txt/' + data_one['title'] + '.txt'
-            content = parse_source(srcname)
 
-        # store the 'DEFINITIONS' info in list
-        defn_data = []
-        """
-        if not content:
-            data_one['definition'] = defn_data
-            continue
-        """
+            # store the 'DEFINITIONS' info in list
+            #defn_data = []
+            data_one['definition'] = search(content)
 
-        if re.search(rule_1, content):
-            if not srcname:
-                print("src: ", str(data_one['title']).split('/')[-1])
-            else:
-                print("src: ", srcname)
-            cnt_definition += 1
-            # f.write(str(source))
-            # f.write("\n")
-            #
-            dict = {}
-            #cnt_mean = 0
-            for line in content.split("\n"):
-                if re.search('means|mean', line):
-                    # the keyword 'meaning' does mean anything
-                    sentences = line.split(".")
-                    for sentence in sentences:
-                        sentence = sentence.strip()
-                        cnt_mean += 1
-                        if len(sentence) < 5:
-                            continue
+        # write into filename
+        with open(filename, 'w') as f:
+            json.dump(json_f, f)
 
-                        print("the sentence:", sentence)
-                        # format one
-                        searchObj = re.findall(
-                            pattern_1, sentence)
-                        if not searchObj:
-                            # format two
-                            searchOjb = re.findall(
-                                pattern_2, sentence)
-                        else:
-                            # any others
-                            # continue
-                            print("searchObj: ", searchObj)
-                            # matchObj = re.search
-                            print("key words: ", searchObj[0][0])
-                            print("Definition: ", searchObj[0][2])
-                            # print("line: ", line)
-                            dict[searchObj[0][0]] = searchObj[0][2]
-                            # f.write(str(line) + "\n")
-
-            defn_data.append(dict)
-            # f.write("\n")
-            # f.close()
-
-        else:
-            pass
-
-        data_one['definition'] = defn_data
-
-    print("num of files including 'DEFINITION:", cnt_definition)
-    print("num of lines including 'mean:", cnt_mean)
-    with open(filename, 'w') as f:
-        json.dump(json_f, f)
+    #print("num of files including 'DEFINITION:", cnt_definition)
+    #print("num of lines including 'mean:", cnt_mean)
 
     return
 
@@ -119,8 +127,8 @@ SRC = '/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/cuad/'
 if __name__ == '__main__':
     # sources = get_sources(src)
     srcname = ''
-    #srcname = SRC + 'BNCMORTGAGEINC_05_17_1999-EX-10.4-LICENSING AND WEB SITE HOSTING AGREEMENT.txt'
-    output = '/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/result/new_train.json'
+    srcname = SRC + 'CHERRYHILLMORTGAGEINVESTMENTCORP_09_26_2013-EX-10.1-Strategic Alliance Agreement.txt'
+    output = '/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/result/new_test.json'
     write_docs(srcname, output)
 
     """
