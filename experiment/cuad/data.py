@@ -37,6 +37,8 @@ def search(content: str):
         '"([\w+\s]+)" means? (.*)',  flags=re.IGNORECASE)
     pattern_2 = re.compile(
         '"([\w+\s]+)" shall mean (.*)', flags=re.IGNORECASE)
+    pattern_4 = re.compile(
+        '([\w+\s]+) means? (.*)',  flags=re.IGNORECASE)
     pattern_3 = re.compile('([\w+\s]+): (.*)')
 
     # cnt_mean = 0
@@ -56,24 +58,30 @@ def search(content: str):
                 # format two
                 searchObj = re.findall(
                     pattern_2, sentence)
+
                 if not searchObj:
                     # format three
                     searchObj = re.findall(
                         pattern_3, sentence)
-
                     # BUGS
                     if searchObj and (len(searchObj[0][0].strip()) > 20 or
                                       len(searchObj[0][1].strip()) < 10):
                         continue
+
                     if not searchObj:
-                        continue
+                        # format four
+                        searchObj = re.findall(
+                            pattern_4, sentence)
+
+                        if not searchObj:
+                            continue
 
             print("searchObj: ", searchObj)
             # matchObj = re.search
             print("key words: ", searchObj[0][0])
             print("Definition: ", searchObj[0][1])
             # print("line: ", line)
-            dict[searchObj[0][0]] = searchObj[0][1]
+            dict[searchObj[0][0].strip()] = searchObj[0][1].strip()
             # f.write(str(line) + "\n")
 
     return dict
@@ -127,7 +135,7 @@ SRC = '/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/cuad/'
 if __name__ == '__main__':
     # sources = get_sources(src)
     srcname = ''
-    srcname = SRC + 'CHERRYHILLMORTGAGEINVESTMENTCORP_09_26_2013-EX-10.1-Strategic Alliance Agreement.txt'
+    #srcname = SRC + 'WESTERN COPPER - NON-COMPETITION AGREEMENT.txt'
     output = '/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/result/new_test.json'
     write_docs(srcname, output)
 
