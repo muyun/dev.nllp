@@ -194,7 +194,7 @@ def write_docs(srcname: str, filename: str):
         test_f = SRC + 'test.json'
         train_f = SRC + 'train.json'
 
-        json_f = read_json(test_f)
+        json_f = read_json(train_f)
 
         for i_d, data_one in enumerate(json_f['data']):
             print("src: ", data_one['title'])
@@ -202,14 +202,16 @@ def write_docs(srcname: str, filename: str):
             source = SRC + 'full_contract_txt/' + \
                 data_one['title'] + '.txt'
             content = parse_source(source)
-            if not content:
-                data_one['paragraphs'][0]['context'] = content
+            if content:
+                # don't overlap the original content
+                #data_one['paragraphs'][0]['context'] = content
+                pass
             else:
                 content = data_one['paragraphs'][0]['context']
 
             # for special cases in some file
             # pattern_3 = re.compile('([\w+\s]+): (.*)')
-            if i_d in [9]:  # bugs
+            if i_d in [67, 82, 107, 295]:  # bugs
                 data_one['definition'] = search_special_case(content)
 
             else:
@@ -235,7 +237,7 @@ if __name__ == '__main__':
     # sources = get_sources(src)
     srcname = ''
     #srcname = SRC + 'STARTECGLOBALCOMMUNICATIONSCORP_11_16_1998-EX-10.30-CONSTRUCTION AND MAINTENANCE AGREEMENT.txt'
-    output = '/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/result/new_test.json'
+    output = '/Users/zhaowenlong/workspace/proj/dev.goal2021/experiment/result/new_train.json'
     write_docs(srcname, output)
 
     """
