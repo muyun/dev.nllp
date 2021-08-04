@@ -148,7 +148,7 @@ def search_special_case(content: str):
             searchObj = re.findall(
                 pattern_3, sentence)
             # BUGS
-            if searchObj and (len(searchObj[0][0].strip()) > 20 or len(searchObj[0][0].strip()) < 3 or
+            if searchObj and (len(searchObj[0][0].strip()) > 15 or len(searchObj[0][0].strip()) < 3 or
                               len(searchObj[0][1].strip()) < 10):
                 continue
 
