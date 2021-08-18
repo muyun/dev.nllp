@@ -131,7 +131,7 @@ def search(content: str):
 
 
 def search_special_case(content: str):
-    """
+    """ the normal formats 
     """
     dict = {}
     pattern_3 = re.compile('([\w+\s]+): (.*)',  flags=re.IGNORECASE)
