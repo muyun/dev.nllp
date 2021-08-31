@@ -1,5 +1,35 @@
 #### note  
 
+##### 2021-08-24  
+
+* TODO  
+    - think about your future 
+    - analyze the current working, and give the answer today  
+
+
+* advantages  
+    - more free time  
+        + build your relationship, and learn the bible  
+        + do more learning  
+
+    - a bit guarantee and stable  
+        + salary monthly  
+        + show her that she can **trust you to do your part in providing for a household**  
+        + go to work each day and **try hard to do your best**  
+        + show her that you are dependable 
+        
+
+* disadvantages  
+    - your goal is to do in the industry  
+    - be confident to know your disadvantages, and know how to fix it  
+        + care about your progress, and tials-error  
+
+
+* SUMMRAY  
+    - receive the contract 
+    - **do your best**  
+    - 你对工作有些三心二意  
+
 
 ##### 2021-07-15 
 
