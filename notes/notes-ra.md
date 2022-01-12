@@ -1,6 +1,8 @@
 #### note  
 
-##### 2021-09 
+##### 2021-12  
+* camera model 
+* camera calibration  
 
 ##### 2021-09-16  
 
