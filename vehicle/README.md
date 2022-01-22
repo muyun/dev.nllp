@@ -4,7 +4,7 @@
     - [car](/vehicle/output/predictions.jpg) 
 
 * demo on vehicle videos  
-  - [traffic-1](/vehicle/output/traffic-1.HEIC)
+  - [traffic-1](/vehicle/output/traffic-1.jpg)
   - > ./darknet detector demo cfg/coco.data cfg/yolov3.cfg yolov3.weights ../vehicle/videos/traffic-1.webm 
    
 
