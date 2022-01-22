@@ -11,3 +11,5 @@ _note
 .gitignore
 experiment/cuad/full_contract_txt/*
 experiment/cuad/*.json
+car/*
+darkent/*
