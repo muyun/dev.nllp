@@ -14,7 +14,7 @@
 * INFO
     - > ssh wlzhao@seis15.se.cuhk.edu.hk  
         + wlzhao/Aiding2022  
-        + /misc/gds/wlzhao/workspace  
+        + /misc/projdata11/info_fil/wlzhao/workspace
 
     - gpu commands  
       > sbatch ./run.sh 
