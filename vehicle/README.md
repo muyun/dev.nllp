@@ -42,4 +42,5 @@
 ##### reference  
 * [darknet](https://pjreddie.com/darknet/yolo/)
 * [Install Darknet with Cuda and Opencv for realtime object detection](https://efcomputer.net.au/blog/4-steps-to-install-darknet-with-cuda-and-opencv-for-realtime-object-detection/)
+* [Save detection to video file](https://github.com/pjreddie/darknet/issues/1235)
 * [YOLOv2](https://cloudxlab.com/blog/object-detection-yolo-and-python-pydarknet/) 
