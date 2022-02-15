@@ -1,6 +1,10 @@
 
-##### 2022-02-08  
+##### 2022-02-15
+* errors  
+    - /usr/local/lib64/pkgconfig/opencv4.pc  
+    - set PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib64/pkgconfig/
 
+##### 2022-02-08  
 
 * virtualenv
     - > source env/vehicleenv/bin/activate.csh
