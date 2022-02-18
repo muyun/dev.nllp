@@ -44,6 +44,7 @@
 
 
 ##### reference  
+* [YOLO object detection with OpenCV](https://pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/)
 * [TFYOLOv3](https://github.com/YunYang1994/tensorflow-yolov3)
 * [darknet](https://pjreddie.com/darknet/yolo/)
 * [Install Darknet with Cuda and Opencv for realtime object detection](https://efcomputer.net.au/blog/4-steps-to-install-darknet-with-cuda-and-opencv-for-realtime-object-detection/)
