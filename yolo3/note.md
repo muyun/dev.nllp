@@ -1,6 +1,6 @@
 
 ##### 2022-02-18
-* coding the yolo.py and yolo_video.py 
+* code yolo.py and yolo_video.py 
     - can generate the video output  
 
 ##### 2022-02-15
