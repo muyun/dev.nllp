@@ -1,4 +1,5 @@
-##### 2022-02-18
+##### Vehicle detection based on YOLO
+* See the [example](https://github.com/muyun/dev.nllp/tree/master/yolo3/output/traffic-1.avi)
 
 ##### reference  
 * [YOLO object detection with OpenCV](https://pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/)
