@@ -2,6 +2,7 @@
 ##### 2022-02-18
 * code yolo.py and yolo_video.py 
     - can generate the video output  
+    - python yolo_video.py --input videos/traffic-1.webm --output output/labbled-traffic-1.avi --yolo yolo-coco
 
 ##### 2022-02-15
 * errors  
