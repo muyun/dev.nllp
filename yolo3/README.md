@@ -1,5 +1,5 @@
-##### Vehicle detection
-* See the Demo![Demo](https://github.com/muyun/dev.nllp/blob/master/yolo3/output/traffic-4.gif)
+##### Vehicle detection: the Demo
+* ![Demo](https://github.com/muyun/dev.nllp/blob/master/yolo3/output/traffic-4.gif)
 
 ##### reference  
 * [YOLO object detection with OpenCV](https://pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/)
