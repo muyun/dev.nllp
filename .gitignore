@@ -11,3 +11,4 @@ experiment/lmtc/data/*
 experiment/cuad/full_contract_txt/*
 experiment/cuad/*.json
 darkent/*
+yolo3/yolo-coco/yolov3.weights
