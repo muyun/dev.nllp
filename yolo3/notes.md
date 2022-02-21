@@ -1,9 +1,10 @@
 
 ##### TODO 
-* think the next task 
+* vehicle analysis report  
+    - vehicle-ID, vehicle-type, appear-video-coordinate, appear-time, disappear-video-coordinate, disappear-time
 
-##### 2022-02-18
-* code yolo.py and yolo_video.py 
+##### 2022-02-18 
+* finish yolo.py and yolo_video.py 
     - can label the video output  
     - > python yolo_video.py --input videos/traffic-1.webm --output output/labbled-traffic-1.avi --yolo yolo-coco  
 
