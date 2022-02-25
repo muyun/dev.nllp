@@ -1,7 +1,23 @@
 
 ##### TODO 
 * vehicle analysis report  
-    - vehicle-ID, vehicle-type, appear-video-coordinate, appear-time, disappear-video-coordinate, disappear-time
+    - vehicle-ID, vehicle-type, appear-video-coordinate, appear-time, disappear-video-coordinate, disappear-time  
+
+
+##### 2022-02-25  
+* finish the deployment on server  
+    - > ssh wlzhao@seis15.se.cuhk.edu.hk  - wlzhao/Aiding2022  
+        + /misc/projdata11/info_fil/wlzhao/workspace/yolo3 
+
+    - virtualenv
+        + > source /misc/projdata11/info_fil/wlzhao/workspace/env/vehicleenv/bin/activate.csh
+
+    - run 
+        + > python yolo_video.py --input videos/traffic-1.webm --output output/output-traffic-1.avi --yolo yolo-coco 
+
+* TODO  
+    - finish the [YOLO object detection with OpenCV](https://pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/) 
+    - the meeting  
 
 ##### 2022-02-18 
 * finish yolo.py and yolo_video.py 
@@ -16,7 +32,7 @@
 ##### 2022-02-08  
 
 * virtualenv
-    - > source env/vehicleenv/bin/activate.csh
+    - > source /misc/projdata11/info_fil/wlzhao/workspace/env/vehicleenv/bin/activate.csh
 
 * worksataion @ [oracle-cloud](https://cloud.oracle.com/compute/instances?region=ap-seoul-1)
     - passphrase for ssh key: zhaowenlong
