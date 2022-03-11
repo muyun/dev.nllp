@@ -14,7 +14,7 @@
         + > source /misc/projdata11/info_fil/wlzhao/workspace/env/vehicleenv/bin/activate.csh
 
     - run 
-        + > python yolo_video.py --input videos/traffic-1.webm --output output/output-traffic-1.avi --yolo yolo-coco 
+        + > python yolo_video.py --input videos/traffic-4.webm --output output/output-traffic-4.avi --yolo yolo-coco 
 
 * TODO  
     - finish the [YOLO object detection with OpenCV](https://pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/) 

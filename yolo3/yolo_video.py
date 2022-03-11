@@ -44,8 +44,8 @@ ln = net.getLayerNames()
 # ln = [ln[i[0] - 1] for i in net.getUnconnectedOutLayers()]
 ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
 
-
-TOTAL_TIMES = 0 
+#update
+TOTAL_TIMES = 0.3
 appear_time = 0
 disappear_time = 0
 
@@ -69,17 +69,10 @@ except:
     total = -1
 
 
-# define the report as a dict
-report = []
-vehicle_report = {
-    "vehicle_id": 0,
-    "vehicle_type": None,
-    "appear_video_coordinate": None,
-    "appear_time": None,
-    "disappear_video_coordinate": None,
-    "disappear_time": None,
-    "detected_status": False
-}
+# define the report as a dict of dict
+#summary = []
+report = {}
+
 # frame_id is used to get the time
 frame_id = 0
 detected_vehicle_id = []
@@ -95,7 +88,9 @@ while True:
     if W is None or H is None:
         (H, W) = frame.shape[:2]
 
+    print(f'the size of image: ({W},{H})')
     frame_id = frame_id + 1
+
 
     # construct a blob from the input frame and then perform a forward
     # pass of the YOLO object detector, giving us our bounding boxes
@@ -134,6 +129,7 @@ while True:
                 # and and left corner of the bounding box
                 x = int(centerX - (width / 2))
                 y = int(centerY - (height / 2))
+
                 # update our list of bounding box coordinates,
                 # confidences, and class IDs
                 boxes.append([x, y, int(width), int(height)])
@@ -142,7 +138,7 @@ while True:
     # apply non-maxima suppression to suppress weak, overlapping
     # bounding boxes
     idxs = cv2.dnn.NMSBoxes(boxes, confidences, args["confidence"], args["threshold"])
-    
+
     # ensure at least one detection exists
     if len(idxs) > 0:
         # loop over the indexes we are keeping
@@ -154,33 +150,47 @@ while True:
 
             # keep the detected object id
             if i not in detected_vehicle_id:
-                detected_vehicle_id.append(classIDs[i])
+                detected_vehicle_id.append(i)
 
                 appear_centerX = int(x + (w/2))
                 appear_centerY = int(y + (h/2))
-                appear_time = frame_id * (TOTAL_TIMES / total)
+                appear_time = "{:.4f}".format(frame_id * (TOTAL_TIMES / total))
                 disappear_time = appear_time
                 disappear_centerX = appear_centerX
                 disappear_centerY = appear_centerY
 
-                vehicle_report["vehicle_id"] = classIDs[i]
-                vehicle_report["vehicle_type"] = LABELS[classIDs[i]]
-                vehicle_report["appear_video_coordinate"] = (appear_centerX,appear_centerY)
-                vehicle_report["appear_time"] =  appear_time
-                vehicle_report["disappear_video_coordinate"] = (disappear_centerX,disappear_centerY)
-                vehicle_report["disappear_time"] = disappear_time
-                vehicle_report["detected_status"] =  True
+                report[i] = {}
+                report[i]["vehicle_id"] = i
+                report[i]["vehicle_type"] = LABELS[classIDs[i]]
+                report[i]["appear_video_coordinate"] = (appear_centerX,appear_centerY)
+                report[i]["appear_time"] =  appear_time
+                report[i]["disappear_video_coordinate"] = (disappear_centerX,disappear_centerY)
+                report[i]["disappear_time"] = disappear_time
+                #report[i]["detected_status"] =  True
 
-                report.append(vehicle_report)
             # TODO
             # classIDs is the labels in the frame?
-            elif i in detected_vehicle_id and vehicle_report["detected_status"]:#True
-                report[classIDs[i]]
-                
+            elif i in detected_vehicle_id:#True
+                #appear_time = frame_id * (TOTAL_TIMES / total)
+                disappear_time = "{:.4f}".format(frame_id * (TOTAL_TIMES / total))
+
+                # extract the bounding box coordinates
+                (x, y) = (boxes[i][0], boxes[i][1])
+                (w, h) = (boxes[i][2], boxes[i][3])
+                #appear_centerX = int(x + (w/2))
+                #appear_centerY = int(y + (h/2))
+                disappear_centerX = int(x + (w/2))
+                disappear_centerY = int(x + (w/2))
+
+                #updateii = str(i)
+                report[i]["disappear_video_coordinate"] = (disappear_centerX,disappear_centerY)
+                report[i]["disappear_time"] = disappear_time
+                #report[i]["detected_status"] =  True
+
             else:
                 pass
 
-
+            #print(report)
             # text = "{}: {:.4f}".format(LABELS[classIDs[i]], confidences[i])
             if LABELS[classIDs[i]] in ["person", "traffic light"]:
                 pass
@@ -192,6 +202,21 @@ while True:
                 cv2.putText(
                 frame, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2
             )
+    
+    
+    print(report)
+
+    print(detected_vehicle_id)
+    #import json
+    #json_file=json.dumps([{'id': k, 'info': v} for k,v in report.items()])
+    with open('report.txt', 'w') as f:
+        f.write(f'the size of image: ({W},{H})' + '\n')
+        #print(report, file=f)
+        for id, info in report.items():
+            f.write(str(id) + " : " + str(info) + '\n')
+
+
+
     # check if the video writer is None
     if writer is None:
         # initialize our video writer
