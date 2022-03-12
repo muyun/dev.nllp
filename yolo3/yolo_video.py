@@ -45,7 +45,12 @@ ln = net.getLayerNames()
 ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
 
 #update
-TOTAL_TIMES = 0.3
+
+TOTAL_TIMES=0.14
+#TOTAL_TIMES=0.29
+#TOTAL_TIMES=0.29
+#TOTAL_TIMES = 0.3
+
 appear_time = 0
 disappear_time = 0
 
@@ -88,7 +93,7 @@ while True:
     if W is None or H is None:
         (H, W) = frame.shape[:2]
 
-    print(f'the size of image: ({W},{H})')
+    #print(f'The Image Size: {W} X {H} pixels')
     frame_id = frame_id + 1
 
 
@@ -143,6 +148,9 @@ while True:
     if len(idxs) > 0:
         # loop over the indexes we are keeping
         for i in idxs.flatten():
+            if LABELS[classIDs[i]] in ["person", "traffic light"]:
+                continue
+
             # extract the bounding box coordinates
             (x, y) = (boxes[i][0], boxes[i][1])
             (w, h) = (boxes[i][2], boxes[i][3])
@@ -192,30 +200,28 @@ while True:
 
             #print(report)
             # text = "{}: {:.4f}".format(LABELS[classIDs[i]], confidences[i])
-            if LABELS[classIDs[i]] in ["person", "traffic light"]:
-                pass
-            else:
-                # draw a bounding box rectangle and label on the frame
-                color = [int(c) for c in COLORS[classIDs[i]]]
-                cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
-                text = "{}".format(LABELS[classIDs[i]])
-                cv2.putText(
+            #if LABELS[classIDs[i]] in ["person", "traffic light"]:
+            #    pass
+            #else:
+            # draw a bounding box rectangle and label on the frame
+            color = [int(c) for c in COLORS[classIDs[i]]]
+            cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
+            text = "{}".format(LABELS[classIDs[i]])
+            cv2.putText(
                 frame, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2
             )
     
     
-    print(report)
+    #print(report)
 
     print(detected_vehicle_id)
     #import json
     #json_file=json.dumps([{'id': k, 'info': v} for k,v in report.items()])
-    with open('report.txt', 'w') as f:
-        f.write(f'the size of image: ({W},{H})' + '\n')
+    with open('report_1.txt', 'w') as f:
+        f.write(f'The Image Size: {W} X {H} pixels' + '\n')
         #print(report, file=f)
         for id, info in report.items():
             f.write(str(id) + " : " + str(info) + '\n')
-
-
 
     # check if the video writer is None
     if writer is None:
