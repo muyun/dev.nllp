@@ -46,10 +46,10 @@ ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
 
 #update
 
-TOTAL_TIMES=0.14
+#TOTAL_TIMES=0.14
 #TOTAL_TIMES=0.29
 #TOTAL_TIMES=0.29
-#TOTAL_TIMES = 0.3
+TOTAL_TIMES = 0.3
 
 appear_time = 0
 disappear_time = 0
@@ -217,7 +217,7 @@ while True:
     print(detected_vehicle_id)
     #import json
     #json_file=json.dumps([{'id': k, 'info': v} for k,v in report.items()])
-    with open('report_1.txt', 'w') as f:
+    with open('report_4.txt', 'w') as f:
         f.write(f'The Image Size: {W} X {H} pixels' + '\n')
         #print(report, file=f)
         for id, info in report.items():
